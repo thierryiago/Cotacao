@@ -1,0 +1,7 @@
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.csproj.AssemblyReference.cache
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.AssemblyInfoInputs.cache
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.AssemblyInfo.cs
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Windows\source\repos\IaraCotacoes\IaraCotacoes\obj\Debug\net6.0\IaraCotacoes.MvcApplicationPartsAssemblyInfo.cache
