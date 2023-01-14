@@ -1,20 +1,11 @@
-﻿namespace IaraCotacoes.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace IaraCotacoes.Models
 {
     public class Cotacao
     {
-        public Cotacao(int id, int cnpjComprador, int cnpjFornecedor, int numeroCotacao, 
-            DateTime dataCotacao, DateTime dataEntregaCotacao, string cep)
-        {
-            Id = id;
-            CNPJComprador = cnpjComprador;
-            CNPJFornecedor = cnpjFornecedor;
-            NumeroCotacao = numeroCotacao;
-            DataCotacao = dataCotacao;
-            DataEntregaCotacao = dataEntregaCotacao;
-            Cep = cep;
-        }
-
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         public int CNPJComprador { get; set; }
         public int CNPJFornecedor { get; set; }
         public int NumeroCotacao { get; set; }

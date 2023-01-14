@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IaraCotacoes.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IaraCotacoes.Controllers
 {
@@ -7,6 +8,7 @@ namespace IaraCotacoes.Controllers
     public class CotacaoItemController : ControllerBase
     {
         private readonly ILogger<CotacaoController> _logger;
+
 
         [HttpGet]
         public IActionResult GetCotacaoItem()

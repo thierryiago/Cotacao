@@ -10,12 +10,6 @@ namespace IaraCotacoes.Data
 
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Cotacao>().HasOne(c => c.CotacaoItens);
-            builder.Entity<CotacaoItem>();
-        }
-
         public DbSet<Cotacao> Cotacao { get; set; }
         public DbSet<CotacaoItem> CotacaoItem { get; set; }
     }

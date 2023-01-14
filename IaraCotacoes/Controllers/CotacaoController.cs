@@ -1,4 +1,5 @@
 using IaraCotacoes.Models;
+using IaraCotacoes.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IaraCotacoes.Controllers
@@ -9,19 +10,27 @@ namespace IaraCotacoes.Controllers
     {
 
         private readonly ILogger<CotacaoController> _logger;
+        private readonly ICotacaoService _cotacaoService;
+
+        public CotacaoController(ILogger<CotacaoController> logger, ICotacaoService cotacaoService)
+        {
+            _logger = logger;
+            _cotacaoService = cotacaoService;
+        }
 
         [HttpGet]
-        public IActionResult GetCotacao()
+        public IActionResult GetAllCotacao()
         {
-            return Ok();
+            var allCotacao = _cotacaoService.GetAllCotacao();
+            return Ok(allCotacao);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetCotacaoById(Guid id)
         {
-            var teste = "";
-            if (teste != null)
-                return Ok(teste);
+            var cotacao = _cotacaoService.GetCotacao(id);
+            if (cotacao != null)
+                return Ok(cotacao);
             return NotFound();
         }
 
