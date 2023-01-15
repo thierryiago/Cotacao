@@ -1,3 +1,4 @@
+using IaraCotacoes.Data.Dtos.Cotacao;
 using IaraCotacoes.Models;
 using IaraCotacoes.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace IaraCotacoes.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCotacaoById(Guid id)
+        public IActionResult GetCotacaoById(int id)
         {
             var cotacao = _cotacaoService.GetCotacao(id);
             if (cotacao != null)
@@ -35,21 +36,33 @@ namespace IaraCotacoes.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCotacao()
+        public IActionResult AddCotacao([FromBody] CreateCotacaoDto cotacaoDto)
         {
-            return Ok();
+            var resultCotacao = _cotacaoService.AddCotacao(cotacaoDto);
+            if (resultCotacao != null)
+            {
+                return CreatedAtRoute(nameof(GetCotacaoById), new { resultCotacao.Id }, cotacaoDto);
+            }
+
+            return BadRequest();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCotacao(Guid id)
+        public IActionResult UpdateCotacao(int id, [FromBody] CreateCotacaoDto cotacaoDto)
         {
-            return NoContent();
+            var resultUpdate = _cotacaoService.UpdateCotacao(id, cotacaoDto);
+            if(resultUpdate.IsSuccess)
+                return NoContent();
+            return NotFound("Cotação não encontrada");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCotacao(Guid id)
+        public IActionResult DeleteCotacao(int id)
         {
-            return NoContent();
+            var resultUpdate = _cotacaoService.DeleteCotacao(id);
+            if (resultUpdate.IsSuccess)
+                return NoContent();
+            return NotFound("Cotação não encontrada");
         }
     }
 }

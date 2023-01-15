@@ -1,12 +1,14 @@
-﻿using IaraCotacoes.Models;
+﻿using FluentResults;
+using IaraCotacoes.Models;
 
 namespace IaraCotacoes.Repositories.Interfaces
 {
     public interface ICotacaoRepository
     {
-        Cotacao GetCotacao(Guid id);
+        void AddCotacao(Cotacao cotacao);
+        Cotacao GetCotacao(int id);
         List<Cotacao> GetAllCotacao();
-        void DeleteCotacao(Guid id);
-        void UpdateCotacao(Guid id);
+        bool DeleteCotacao(int id);
+        bool UpdateCotacao(int id, Cotacao cotacao);
     }
 }

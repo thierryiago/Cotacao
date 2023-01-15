@@ -5,10 +5,11 @@ namespace IaraCotacoes.Services.Interfaces
 {
     public interface ICotacaoService
     {
-        ReadCotacaoDto GetCotacao(Guid id);
+        ReadCotacaoDto AddCotacao(CreateCotacaoDto cotacaoDto);
+        ReadCotacaoDto GetCotacao(int id);
         List<ReadCotacaoDto> GetAllCotacao();
-        Result DeleteCotacao(Guid id);
-        Result UpdateCotacao(Guid id);
+        Result DeleteCotacao(int id);
+        Result UpdateCotacao(int id, CreateCotacaoDto cotacaoDto);
 
     }
 }

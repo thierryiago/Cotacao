@@ -5,6 +5,7 @@ namespace IaraCotacoes.Data.Dtos.Cotacao
 {
     public class CreateCotacaoDto
     {
+        public int Id { get; set; }
         [Required]
         public int CNPJComprador { get; set; }
         [Required]

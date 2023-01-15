@@ -4,6 +4,7 @@ namespace IaraCotacoes.Data.Dtos.Cotacao
 {
     public class ReadCotacaoDto
     {
+        public int Id { get; set; }
         public int CNPJComprador { get; set; }
         public int CNPJFornecedor { get; set; }
         public int NumeroCotacao { get; set; }

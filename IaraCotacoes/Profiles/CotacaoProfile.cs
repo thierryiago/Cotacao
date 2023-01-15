@@ -8,6 +8,7 @@ namespace IaraCotacoes.Profiles
     {
         public CotacaoProfile()
         {
+            CreateMap<CreateCotacaoDto, Cotacao>();
             CreateMap<Cotacao, ReadCotacaoDto>();
             CreateMap<ReadCotacaoDto, Cotacao>();
         }

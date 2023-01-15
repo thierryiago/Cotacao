@@ -5,7 +5,7 @@ namespace IaraCotacoes.Models
     public class Cotacao
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public int CNPJComprador { get; set; }
         public int CNPJFornecedor { get; set; }
         public int NumeroCotacao { get; set; }
