@@ -4,6 +4,7 @@ using IaraCotacoes.Data.Dtos.Cotacao;
 using IaraCotacoes.Models;
 using IaraCotacoes.Repositories.Interfaces;
 using IaraCotacoes.Services.Interfaces;
+using Refit;
 
 namespace IaraCotacoes.Services
 {
@@ -11,21 +12,25 @@ namespace IaraCotacoes.Services
     {
         private readonly ILogger<CotacaoService> _logger;
         private readonly ICotacaoRepository _cotacaoRepository;
+        private readonly IConsultaEnderecosService _consultaEnderecosService;
         private readonly IMapper _mapper;
 
-        public CotacaoService(ILogger<CotacaoService> logger, ICotacaoRepository cotacaoRepository, IMapper mapper)
+        public CotacaoService(ILogger<CotacaoService> logger, ICotacaoRepository cotacaoRepository, IMapper mapper, IConsultaEnderecosService consultaEnderecosService)
         {
             _logger = logger;
             _cotacaoRepository = cotacaoRepository;
             _mapper = mapper;
+            _consultaEnderecosService = consultaEnderecosService;
         }
 
-        public ReadCotacaoDto AddCotacao(CreateCotacaoDto cotacaoDto)
+        public async Task<ReadCotacaoDto> AddCotacaoAsync(CreateCotacaoDto cotacaoDto)
         {
             try
             {
+                cotacaoDto = await ChecarEndereco(cotacaoDto);
+
                 var cotacaoMap = _mapper.Map<CreateCotacaoDto, Cotacao>(cotacaoDto);
-                _cotacaoRepository.AddCotacao(cotacaoMap);
+                await _cotacaoRepository.AddCotacao(cotacaoMap);
 
                 return _mapper.Map<Cotacao, ReadCotacaoDto>(cotacaoMap);
             }
@@ -37,23 +42,25 @@ namespace IaraCotacoes.Services
             return new();
         }
 
-        public List<ReadCotacaoDto> GetAllCotacao()
+        public async Task<List<ReadCotacaoDto>> GetAllCotacao()
         {
-            return _mapper.Map<List<ReadCotacaoDto>>(_cotacaoRepository.GetAllCotacao());
+            return await _mapper.Map<Task<List<ReadCotacaoDto>>>(_cotacaoRepository.GetAllCotacao());
         }
 
-        public ReadCotacaoDto GetCotacao(int id)
+        public async Task<ReadCotacaoDto> GetCotacao(int id)
         {
-            return _mapper.Map<ReadCotacaoDto>(_cotacaoRepository.GetCotacao(id));
+            return await _mapper.Map<Task<ReadCotacaoDto>>(_cotacaoRepository.GetCotacao(id));
         }
 
-        public Result UpdateCotacao(int id, CreateCotacaoDto cotacaoDto)
+        public async Task<Result> UpdateCotacao(int id, CreateCotacaoDto cotacaoDto)
         {
             try
             {
+                cotacaoDto = await ChecarEndereco(cotacaoDto);
+
                 var cotacaoMap = _mapper.Map<CreateCotacaoDto, Cotacao>(cotacaoDto);
                 var updateCotacao = _cotacaoRepository.UpdateCotacao(id, cotacaoMap);
-                if (updateCotacao)
+                if (updateCotacao.Result)
                     return Result.Ok();
 
                 return Result.Fail("Falha ao atualizar Cotação");
@@ -65,12 +72,12 @@ namespace IaraCotacoes.Services
             }
         }
 
-        public Result DeleteCotacao(int id)
+        public async Task<Result> DeleteCotacao(int id)
         {
             try
             {
                 var deleteCotacao = _cotacaoRepository.DeleteCotacao(id);
-                if (deleteCotacao)
+                if (deleteCotacao.Result)
                     return Result.Ok();
             }
             catch (Exception e)
@@ -80,6 +87,25 @@ namespace IaraCotacoes.Services
             }
 
             return Result.Fail("Falha ao deletar Cotação");
+        }
+
+        private async Task<CreateCotacaoDto> ChecarEndereco(CreateCotacaoDto cotacaoDto)
+        {
+            if (string.IsNullOrEmpty(cotacaoDto.Logradouro) &&
+                    string.IsNullOrEmpty(cotacaoDto.Bairro) &&
+                    string.IsNullOrEmpty(cotacaoDto.Uf))
+            {
+
+                var endereco = await _consultaEnderecosService.ConsultarEnderecoAsync(cotacaoDto.Cep);
+                cotacaoDto.Logradouro = endereco.Logradouro;
+                cotacaoDto.Bairro = endereco.Bairro;
+                cotacaoDto.Uf = endereco.Uf;
+
+                return cotacaoDto;
+            }
+            else
+                return new();
+
         }
 
     }

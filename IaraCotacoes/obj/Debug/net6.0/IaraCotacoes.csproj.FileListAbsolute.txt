@@ -45,3 +45,4 @@ C:\Users\Windows\Source\Repos\Cotacao\IaraCotacoes\obj\Debug\net6.0\ref\IaraCota
 C:\Users\Windows\Source\Repos\Cotacao\IaraCotacoes\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Windows\Source\Repos\Cotacao\IaraCotacoes\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Windows\Source\Repos\Cotacao\IaraCotacoes\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Windows\Source\Repos\Cotacao\IaraCotacoes\bin\Debug\net6.0\Refit.dll

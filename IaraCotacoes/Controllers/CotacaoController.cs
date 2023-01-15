@@ -36,12 +36,12 @@ namespace IaraCotacoes.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCotacao([FromBody] CreateCotacaoDto cotacaoDto)
+        public IActionResult AddCotacaoAsync([FromBody] CreateCotacaoDto cotacaoDto)
         {
-            var resultCotacao = _cotacaoService.AddCotacao(cotacaoDto);
+            var resultCotacao = _cotacaoService.AddCotacaoAsync(cotacaoDto);
             if (resultCotacao != null)
             {
-                return CreatedAtRoute(nameof(GetCotacaoById), new { resultCotacao.Id }, cotacaoDto);
+                return CreatedAtAction(nameof(GetCotacaoById), new { resultCotacao.Id }, cotacaoDto);
             }
 
             return BadRequest();
@@ -51,7 +51,7 @@ namespace IaraCotacoes.Controllers
         public IActionResult UpdateCotacao(int id, [FromBody] CreateCotacaoDto cotacaoDto)
         {
             var resultUpdate = _cotacaoService.UpdateCotacao(id, cotacaoDto);
-            if(resultUpdate.IsSuccess)
+            if(resultUpdate.Result.IsSuccess)
                 return NoContent();
             return NotFound("Cotação não encontrada");
         }
@@ -60,7 +60,7 @@ namespace IaraCotacoes.Controllers
         public IActionResult DeleteCotacao(int id)
         {
             var resultUpdate = _cotacaoService.DeleteCotacao(id);
-            if (resultUpdate.IsSuccess)
+            if (resultUpdate.Result.IsSuccess)
                 return NoContent();
             return NotFound("Cotação não encontrada");
         }

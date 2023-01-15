@@ -17,12 +17,12 @@ namespace IaraCotacoes.Repositories
             _logger = logger;
         }
 
-        public void AddCotacao(Cotacao cotacao)
+        public async Task AddCotacao(Cotacao cotacao)
         {
             try
             {
-                _context.Cotacao.Add(cotacao);
-                _context.SaveChanges();
+                await _context.Cotacao.AddAsync(cotacao);
+                await _context.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -30,7 +30,7 @@ namespace IaraCotacoes.Repositories
             }
         }
 
-        public List<Cotacao> GetAllCotacao()
+        public async Task<List<Cotacao>> GetAllCotacao()
         {
             var cotacaoList = _context.Cotacao.ToList();
             if (cotacaoList.Any())
@@ -39,7 +39,7 @@ namespace IaraCotacoes.Repositories
             return cotacaoList;
         }
 
-        public Cotacao GetCotacao(int id)
+        public async Task<Cotacao> GetCotacao(int id)
         {
             var cotacao = _context.Cotacao.FirstOrDefault(v => v.Id == id);
             if (cotacao == null)
@@ -49,11 +49,11 @@ namespace IaraCotacoes.Repositories
 
         }
 
-        public bool UpdateCotacao(int id, Cotacao cotacao)
+        public async Task<bool> UpdateCotacao(int id, Cotacao cotacao)
         {
             try
             {
-                if (GetCotacao(id) == null)
+                if (await GetCotacao(id) == null)
                     return false;
                 cotacao.Id = id;
 
@@ -69,11 +69,11 @@ namespace IaraCotacoes.Repositories
             return true;
         }
 
-        public bool DeleteCotacao(int id)
+        public async Task<bool> DeleteCotacao(int id)
         {
             try
             {
-                var cotacao = GetCotacao(id);
+                var cotacao = await GetCotacao(id);
                 if (cotacao == null)
                     return false;
 

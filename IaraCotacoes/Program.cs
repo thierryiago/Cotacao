@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICotacaoRepository, CotacaoRepository>();
 builder.Services.AddScoped<ICotacaoItemService, CotacaoItemService>();
 builder.Services.AddScoped<ICotacaoItemRepository, CotacaoItemRepository>();
 
+builder.Services.AddScoped<IConsultaEnderecosService, ConsultaEnderecosService>();
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionCotacao");
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
