@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IaraCotacoes.Migrations
 {
-    public partial class Firstmigration : Migration
+    public partial class First_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace IaraCotacoes.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Descricao = table.Column<string>(type: "longtext", nullable: false)
+                    Descricao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NumeroItem = table.Column<int>(type: "int", nullable: false),
                     Preco = table.Column<double>(type: "double", nullable: false),
@@ -57,7 +57,7 @@ namespace IaraCotacoes.Migrations
                     Marca = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Unidade = table.Column<int>(type: "int", nullable: false),
-                    CotacaoId = table.Column<int>(type: "int", nullable: true)
+                    CotacaoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,7 +66,8 @@ namespace IaraCotacoes.Migrations
                         name: "FK_CotacaoItem_Cotacao_CotacaoId",
                         column: x => x.CotacaoId,
                         principalTable: "Cotacao",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 

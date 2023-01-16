@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace IaraCotacoes.Models
 {
     public class Cotacao
     {
         [Key]
+        [Required]
         public int Id { get; set; }
         public int CNPJComprador { get; set; }
         public int CNPJFornecedor { get; set; }
@@ -17,6 +19,7 @@ namespace IaraCotacoes.Models
         public string? Bairro { get; set; }
         public string? Uf { get; set; }
         public string? Observacao { get; set; }
-        public List<CotacaoItem>? CotacaoItens { get; set; }
+        [JsonIgnore]
+        public virtual List<CotacaoItem>? CotacaoItens { get; set; }
     }
 }

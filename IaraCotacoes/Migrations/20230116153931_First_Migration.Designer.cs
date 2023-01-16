@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IaraCotacoes.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230115181224_newIds")]
-    partial class newIds
+    [Migration("20230116153931_First_Migration")]
+    partial class First_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

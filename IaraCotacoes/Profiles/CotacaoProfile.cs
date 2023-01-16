@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using IaraCotacoes.Data.Dtos.Cotacao;
+using IaraCotacoes.Data.Dtos.CotacaoDto;
 using IaraCotacoes.Models;
 
 namespace IaraCotacoes.Profiles
@@ -11,6 +11,10 @@ namespace IaraCotacoes.Profiles
             CreateMap<CreateCotacaoDto, Cotacao>();
             CreateMap<Cotacao, ReadCotacaoDto>();
             CreateMap<ReadCotacaoDto, Cotacao>();
+
+            CreateMap<Task<CreateCotacaoDto>, Task<Cotacao>>();
+            CreateMap<Task<Cotacao>, Task<ReadCotacaoDto>>();
+            CreateMap<Task<ReadCotacaoDto>, Task<Cotacao>>();
         }
     }
 }

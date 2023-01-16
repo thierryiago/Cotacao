@@ -1,7 +1,8 @@
 ﻿using IaraCotacoes.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace IaraCotacoes.Data.Dtos.Cotacao
+namespace IaraCotacoes.Data.Dtos.CotacaoDto
 {
     public class CreateCotacaoDto
     {
@@ -23,6 +24,7 @@ namespace IaraCotacoes.Data.Dtos.Cotacao
         public string? Bairro { get; set; }
         public string? Uf { get; set; }
         public string? Observacao { get; set; }
+        [JsonIgnore]
         public List<CotacaoItem>? CotacaoItens { get; set; }
     }
 }

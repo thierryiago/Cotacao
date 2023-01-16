@@ -5,6 +5,7 @@ using IaraCotacoes.Services;
 using IaraCotacoes.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,12 +26,24 @@ builder.Services.AddScoped<ICotacaoItemRepository, CotacaoItemRepository>();
 builder.Services.AddScoped<IConsultaEnderecosService, ConsultaEnderecosService>();
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionCotacao");
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<AppDbContext>(op => op.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)), ServiceLifetime.Transient);
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+
 
 
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cotacoes", Version = "v1" });
+});
+
+builder.Services.AddMvc(options =>
+{
+    options.SuppressAsyncSuffixInActionNames = false;
 });
 
 var app = builder.Build();

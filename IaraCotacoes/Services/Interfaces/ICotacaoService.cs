@@ -1,5 +1,5 @@
 ﻿using FluentResults;
-using IaraCotacoes.Data.Dtos.Cotacao;
+using IaraCotacoes.Data.Dtos.CotacaoDto;
 
 namespace IaraCotacoes.Services.Interfaces
 {

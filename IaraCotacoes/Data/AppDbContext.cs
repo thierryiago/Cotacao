@@ -16,6 +16,11 @@ namespace IaraCotacoes.Data
                 .HasMany(x => x.CotacaoItens)
                 .WithOne(c => c.Cotacao)
                 .HasForeignKey(v => v.CotacaoId);
+
+            builder.Entity<CotacaoItem>()
+                .HasOne(x => x.Cotacao)
+                .WithMany(c => c.CotacaoItens)
+                .HasForeignKey(v => v.CotacaoId);
         }
 
         public DbSet<Cotacao> Cotacao { get; set; }

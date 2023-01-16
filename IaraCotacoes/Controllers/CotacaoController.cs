@@ -1,5 +1,4 @@
-using IaraCotacoes.Data.Dtos.Cotacao;
-using IaraCotacoes.Models;
+using IaraCotacoes.Data.Dtos.CotacaoDto;
 using IaraCotacoes.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,47 +19,44 @@ namespace IaraCotacoes.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllCotacao()
+        public async Task<IActionResult> GetAllCotacao()
         {
-            var allCotacao = _cotacaoService.GetAllCotacao();
+            var allCotacao = await _cotacaoService.GetAllCotacao();
             return Ok(allCotacao);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCotacaoById(int id)
+        public async Task<IActionResult> GetCotacaoByIdAsync(int id)
         {
-            var cotacao = _cotacaoService.GetCotacao(id);
+            var cotacao = await _cotacaoService.GetCotacao(id);
             if (cotacao != null)
                 return Ok(cotacao);
             return NotFound();
         }
 
         [HttpPost]
-        public IActionResult AddCotacaoAsync([FromBody] CreateCotacaoDto cotacaoDto)
+        public async Task<IActionResult> AddCotacaoAsync([FromBody] CreateCotacaoDto cotacaoDto)
         {
-            var resultCotacao = _cotacaoService.AddCotacaoAsync(cotacaoDto);
-            if (resultCotacao != null)
-            {
-                return CreatedAtAction(nameof(GetCotacaoById), new { resultCotacao.Id }, cotacaoDto);
-            }
+            var resultCotacao = await _cotacaoService.AddCotacaoAsync(cotacaoDto);
 
-            return BadRequest();
+            return CreatedAtAction(nameof(GetCotacaoByIdAsync), new { id = resultCotacao.Id }, cotacaoDto);
+
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCotacao(int id, [FromBody] CreateCotacaoDto cotacaoDto)
+        public async Task<IActionResult> UpdateCotacaoAsync(int id, [FromBody] CreateCotacaoDto cotacaoDto)
         {
-            var resultUpdate = _cotacaoService.UpdateCotacao(id, cotacaoDto);
-            if(resultUpdate.Result.IsSuccess)
+            var resultUpdate = await _cotacaoService.UpdateCotacao(id, cotacaoDto);
+            if (resultUpdate.IsSuccess)
                 return NoContent();
             return NotFound("Cotação não encontrada");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCotacao(int id)
+        public async Task<IActionResult> DeleteCotacaoAsync(int id)
         {
-            var resultUpdate = _cotacaoService.DeleteCotacao(id);
-            if (resultUpdate.Result.IsSuccess)
+            var resultUpdate = await _cotacaoService.DeleteCotacao(id);
+            if (resultUpdate.IsSuccess)
                 return NoContent();
             return NotFound("Cotação não encontrada");
         }

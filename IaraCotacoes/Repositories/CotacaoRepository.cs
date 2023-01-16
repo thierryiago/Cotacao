@@ -1,6 +1,4 @@
-﻿using FluentResults;
-using IaraCotacoes.Data;
-using IaraCotacoes.Data.Dtos.Cotacao;
+﻿using IaraCotacoes.Data;
 using IaraCotacoes.Models;
 using IaraCotacoes.Repositories.Interfaces;
 
@@ -41,7 +39,7 @@ namespace IaraCotacoes.Repositories
 
         public async Task<Cotacao> GetCotacao(int id)
         {
-            var cotacao = _context.Cotacao.FirstOrDefault(v => v.Id == id);
+            var cotacao = await _context.Cotacao.FindAsync(id);
             if (cotacao == null)
                 return new();
 

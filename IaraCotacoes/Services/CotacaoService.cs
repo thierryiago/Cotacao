@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using FluentResults;
-using IaraCotacoes.Data.Dtos.Cotacao;
+using IaraCotacoes.Data.Dtos.CotacaoDto;
 using IaraCotacoes.Models;
 using IaraCotacoes.Repositories.Interfaces;
 using IaraCotacoes.Services.Interfaces;
-using Refit;
 
 namespace IaraCotacoes.Services
 {
@@ -76,8 +75,8 @@ namespace IaraCotacoes.Services
         {
             try
             {
-                var deleteCotacao = _cotacaoRepository.DeleteCotacao(id);
-                if (deleteCotacao.Result)
+                var deleteCotacao = await _cotacaoRepository.DeleteCotacao(id);
+                if (deleteCotacao)
                     return Result.Ok();
             }
             catch (Exception e)

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IaraCotacoes.Data.Dtos.Cotacao
+namespace IaraCotacoes.Data.Dtos.CotacaoDto
 {
     public class UpdateCotacaoDto
     {

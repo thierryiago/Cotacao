@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace IaraCotacoes.Models
 {
@@ -14,6 +15,7 @@ namespace IaraCotacoes.Models
         public string? Marca { get; set; }
         public int Unidade { get; set; }
         public int CotacaoId { get; set; }
+        [JsonIgnore]
         public virtual Cotacao Cotacao { get; set; }
     }
 }

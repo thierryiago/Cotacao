@@ -1,6 +1,7 @@
 ﻿using IaraCotacoes.Models;
+using System.Text.Json.Serialization;
 
-namespace IaraCotacoes.Data.Dtos.Cotacao
+namespace IaraCotacoes.Data.Dtos.CotacaoDto
 {
     public class ReadCotacaoDto
     {

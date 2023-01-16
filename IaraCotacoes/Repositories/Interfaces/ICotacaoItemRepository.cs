@@ -4,9 +4,10 @@ namespace IaraCotacoes.Repositories.Interfaces
 {
     public interface ICotacaoItemRepository
     {
-        List<CotacaoItem> GetCotacaoItem(Guid Id);
-        List<CotacaoItem> GetAllCotacaoItem();
-        void DeleteCotacao(Guid Id);
-        void UpdateCotacao(Guid Id);
+        Task AddCotacaoItem(CotacaoItem cotacaoItem);
+        Task<CotacaoItem> GetCotacaoItem(int id);
+        Task<List<CotacaoItem>> GetAllCotacaoItem();
+        Task<bool> DeleteCotacaoItem(int id);
+        Task<bool> UpdateCotacaoItem(int id, CotacaoItem cotacaoItem);
     }
 }
