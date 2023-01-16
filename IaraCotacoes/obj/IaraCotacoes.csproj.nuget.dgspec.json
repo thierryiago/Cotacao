@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj": {}
+    "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj": {
+    "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
+        "projectUniqueName": "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
         "projectName": "IaraCotacoes",
-        "projectPath": "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
+        "projectPath": "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
         "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\obj\\",
+        "outputPath": "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

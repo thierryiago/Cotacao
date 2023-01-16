@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fu3t0D/IjuFH2MjEydieDB2Zb/BTWrP/LnmelCq6cerqbv1ZsPlG6TE3qqTu2LJ8rJnP8sLtu3yk42gVBf7Y5A==",
+  "dgSpecHash": "qw2wMNNmfjjP72ugHVyPsQDc3+vZzF7aA3ihubhnqm/TWvFO3l/NjYyrz/qZivMpd4h3mgjv14LA7wtzHxLUDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Windows\\Source\\Repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
+  "projectFilePath": "C:\\Users\\Windows\\source\\repos\\Cotacao\\IaraCotacoes\\IaraCotacoes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Windows\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Windows\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
